@@ -1,0 +1,99 @@
+<!-- DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+<h1>Search Results</h1>
+<form action="/search" method="get">
+    <label for="query">Fault Code:</label>
+    <input type="text" id="query" name="query">
+    <button type="submit">Search</button>
+</form>
+<a href="/">Home</a>  Home link to navigate back to the index page
+<h2>Results:</h2>
+<ul>
+    <li th:each="solution : ${solutions}">
+        <p>Fault Code Number: <span th:text="${solution.faultCodeNumber}"></span></p>
+        <p>Fault Description: <span th:text="${solution.faultDescription}"></span></p>
+        <p>Description: <span th:text="${solution.description}"></span></p>
+        <p>Spare Parts Used: <span th:text="${solution.sparePartsUsed}"></span></p>
+        <div th:if="${solution.photo1 != null}">
+            <p>Photo 1:</p>
+            <img th:src="@{/solutions/{id}/photo/1(id=${solution.id})}" alt="Photo 1">
+        </div>
+        <div th:if="${solution.photo2 != null}">
+            <p>Photo 2:</p>
+            <img th:src="@{/solutions/{id}/photo/2(id=${solution.id})}" alt="Photo 2">
+        </div>
+        <div th:if="${solution.photo3 != null}">
+            <p>Photo 3:</p>
+            <img th:src="@{/solutions/{id}/photo/3(id=${solution.id})}" alt="Photo 3">
+        </div>
+    </li>
+</ul>
+</body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('path/to/wind-turbine-image.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <button class="btn btn-primary home-button" onclick="window.location.href='index.html'">Home</button>
+    <h1 class="mt-5">Search Results</h1>
+    <form action="/search" method="get" class="form-inline my-3">
+        <label class="sr-only" for="query">Fault Code:</label>
+        <input type="text" id="query" name="query" class="form-control mr-2" placeholder="Fault Code">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <h2>Results:</h2>
+    <ul>
+        <li th:each="solution : ${solutions}" class="list-unstyled">
+            <div class="card my-3">
+                <div class="card-body">
+                    <p>Fault Code Number: <span th:text="${solution.faultCodeNumber}"></span></p>
+                    <p>Fault Description: <span th:text="${solution.faultDescription}"></span></p>
+                    <p>Description: <span th:text="${solution.description}"></span></p>
+                    <p>Spare Parts Used: <span th:text="${solution.sparePartsUsed}"></span></p>
+                    <div th:if="${solution.photo1 != null}">
+                        <p>Photo 1:</p>
+                        <img th:src="@{/solutions/{id}/photo/1(id=${solution.id})}" alt="Photo 1" class="img-fluid">
+                    </div>
+                    <div th:if="${solution.photo2 != null}">
+                        <p>Photo 2:</p>
+                        <img th:src="@{/solutions/{id}/photo/2(id=${solution.id})}" alt="Photo 2" class="img-fluid">
+                    </div>
+                    <div th:if="${solution.photo3 != null}">
+                        <p>Photo 3:</p>
+                        <img th:src="@{/solutions/{id}/photo/3(id=${solution.id})}" alt="Photo 3" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
